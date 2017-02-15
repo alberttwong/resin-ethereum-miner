@@ -14,6 +14,9 @@ ENV INITSYSTEM on
 
 RUN curl -SL https://gethstore.blob.core.windows.net/builds/geth-linux-arm7-1.5.9-a07539fb.tar.gz | tar -zxv --strip-components=1 -C /usr/local/bin/
 
+# Each worker needs a local account to store ETH.   Make sure you use /data so that when the container is rebuilt/redeployed, you won't lose your data
+RUN geth --datadir /data/ethData account new
+
 # Geth commmand to sync blockchain.  Highly advised that you copy from another machine.
 #RUN geth --datadir /data/ethData --autodag --verbosity 1
 
