@@ -7,13 +7,13 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 # use apt-get if you need to install dependencies,
 # for instance if you need ALSA sound utils, just uncomment the lines below.
 RUN apt-get update && apt-get install -yq \
-    libgmp3-dev golang 
+    libgmp3-dev golang git
 
 # Enable systemd init system in container
 ENV INITSYSTEM on
 
 RUN git clone -b release/1.3.3 https://github.com/ethereum/go-ethereum.git /app/ethereum/
-RUN cd /app/ethereum/ && ./make
+RUN cd /app/ethereum/ && ./make geth
 #RUN cp build/bin/geth /usr/local/bin/
 
 #CMD
